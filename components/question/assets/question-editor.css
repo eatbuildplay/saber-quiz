@@ -1,0 +1,110 @@
+#question-editor {
+
+}
+
+#question_options_editor li {
+  position: relative;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 5px 0;
+  background: #F2F2F2;
+  cursor: move;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1.4em;
+}
+#question_options_editor .dashicons {
+  display: inline-block;
+  font-size: 25px;
+  padding: 5px 8px;
+  width: auto;
+  height: auto;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+/* delete option icon */
+#question_options_editor li .dashicons-trash {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  cursor: pointer;
+}
+#question_options_editor li .dashicons-trash:hover {
+  opacity: 0.8;
+}
+
+/* option input field */
+#question_options_editor li input.option-title {
+  border-radius: 0;
+  padding: 4px 6px;
+  font-size: 1.15em;
+  background: #F6F6F6;
+  width: 320px;
+  text-align: center;
+}
+
+/* edit option icon */
+#question_options_editor li .dashicons-welcome-write-blog {
+  position: absolute;
+  top: 8px;
+  right: 50px;
+}
+#question_options_editor li .dashicons-welcome-write-blog:hover {
+  opacity: 0.8;
+}
+
+#question_options_editor li .dashicons-thumbs-up {
+  font-size: 32px;
+  vertical-align: middle;
+}
+#question_options_editor li .dashicons-thumbs-up:hover {
+  opacity: 0.8;
+  color: #0DAC50;
+}
+
+#question_options_editor li .dashicons-yes-alt {
+  display: none;
+  opacity: 0.2;
+}
+#question_options_editor li .dashicons-yes-alt:hover {
+  opacity: 0.5;
+}
+#question_options_editor li .dashicons-dismiss {
+  opacity: 0.2;
+}
+#question_options_editor li .dashicons-dismiss:hover {
+  opacity: 0.5;
+}
+
+.editor-mode-edit {
+  display: none;
+}
+
+
+/*
+ * Search forms
+ */
+.editor-add-forms .search-box {
+  padding: 7px 20px;
+  font-size: 1.3em;
+  width: 320px;
+  vertical-align: top;
+}
+
+/* search button */
+.editor-add-forms .search-button {
+  padding: 12px 20px;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.ce-search-clear {
+  text-align: right;
+  font-size: 0.9em;
+  background: #D9D9D9;
+  color: #FFF;
+  padding: 10px;
+  margin: 5px 0 0 0;
+  border: none;
+}
