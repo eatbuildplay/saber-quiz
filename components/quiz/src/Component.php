@@ -8,6 +8,10 @@ class Component {
 
     add_action('init', [$this, 'registerPostTypes']);
 
+    // load QuizRender
+    require_once( SABER_QUIZ_PATH . 'components/quiz/src/QuizRender.php' );
+    new QuizRender();
+
     // load controllers
     require_once( SABER_QUIZ_PATH . 'components/quiz/src/QuizEditor.php' );
     new QuizEditor();
@@ -70,6 +74,12 @@ class Component {
       array( 'jquery' ),
       '1.0.0',
       true
+    );
+
+    wp_localize_script(
+      'quiz-js',
+      'saberQuiz',
+      [ 'ajaxurl' => admin_url('admin-ajax.php') ]
     );
 
     wp_enqueue_style(

@@ -73,4 +73,32 @@ class QuizScoreQuestion {
 
   }
 
+  public static function fetchList( $examScoreId ) {
+
+    $posts = get_posts([
+      'post_type'   => 'exam_score_question',
+      'numberposts'	=> -1,
+      'meta_query'  => [
+        [
+          'key'   => 'exam_score_question_exam_score',
+          'value' => $examScoreId
+        ]
+      ]
+    ]);
+
+    return self::loadList($posts);
+
+  }
+
+  public static function loadList( $posts ) {
+
+    $objs = [];
+    foreach( $posts as $post ) {
+      $objs[] = self::load( $post );
+    }
+
+    return $objs;
+
+  }
+
 }

@@ -68,7 +68,7 @@ class QuizScore {
     $quizId = get_post_meta( $obj->id, 'quiz_score_quiz', 1);
     $obj->quiz = Quiz::load( $quizId );
     $obj->start = get_post_meta( $obj->id, 'quiz_score_start', 1);
-    $obj->quizScoreQuestions = QuizScoreQuestionList::fetch( $obj->id );
+    $obj->quizScoreQuestions = QuizScoreQuestion::fetchList( $obj->id );
 
     // calculated properties
     $obj->setQuestionCount();

@@ -27,6 +27,9 @@ var Quiz = {
 
   init: function() {
 
+console.log( "poohiulgyufytdtr" )
+    console.log( Quiz.id )
+
     if( !Quiz.id ) {
       return;
     }
@@ -82,7 +85,7 @@ var Quiz = {
       action: 'saber_quiz_end',
       quizId: Quiz.id
     }
-    jQuery.post( saber_post_list_load.ajaxurl, data, function( response ) {
+    jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
       response = JSON.parse(response);
 
@@ -126,7 +129,7 @@ var Quiz = {
       action: 'saber_quiz_create_quiz_score',
       quizId: Quiz.id
     }
-    jQuery.post( saber_post_list_load.ajaxurl, data, function( response ) {
+    jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
       response = JSON.parse(response);
 
@@ -191,7 +194,7 @@ var Quiz = {
       action: 'saber_quiz_quiz_load',
       quizId: Quiz.id
     }
-    jQuery.post( saber_post_list_load.ajaxurl, data, function( response ) {
+    jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
       response = JSON.parse(response);
       Quiz.quiz = response.quiz;
@@ -274,7 +277,7 @@ var Quiz = {
       questionId: $questionId,
       questionOptionId: $questionOptionId
     }
-    jQuery.post( saber_post_list_load.ajaxurl, data, function( response ) {
+    jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
        response = JSON.parse(response);
 

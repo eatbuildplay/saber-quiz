@@ -17,8 +17,6 @@ class Component {
     require_once( SABER_QUIZ_PATH . 'components/question/src/models/QuestionAnswer.php' );
     require_once( SABER_QUIZ_PATH . 'components/question/src/models/QuestionOption.php' );
 
-    add_action('wp_enqueue_scripts', array( $this, 'scripts' ));
-
     add_filter('single_template', [$this, 'singlePageTemplates'] );
     add_action('wp', [$this, 'setGlobals']);
 
@@ -43,25 +41,6 @@ class Component {
     }
 
     return $single;
-
-  }
-
-  public function scripts() {
-
-    wp_enqueue_script(
-      'question-js',
-      SABER_QUIZ_URL . 'components/question/assets/question.js',
-      array( 'jquery' ),
-      '1.0.0',
-      true
-    );
-
-    wp_enqueue_style(
-      'question-css',
-      SABER_QUIZ_URL . 'components/question/assets/question.css',
-      array(),
-      true
-    );
 
   }
 
