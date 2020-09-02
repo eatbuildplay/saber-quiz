@@ -73,15 +73,15 @@ class QuizScoreQuestion {
 
   }
 
-  public static function fetchList( $examScoreId ) {
+  public static function fetchList( $quizScoreId ) {
 
     $posts = get_posts([
-      'post_type'   => 'exam_score_question',
+      'post_type'   => 'quiz_score_question',
       'numberposts'	=> -1,
       'meta_query'  => [
         [
-          'key'   => 'exam_score_question_exam_score',
-          'value' => $examScoreId
+          'key'   => 'quiz_score_question_quiz_score',
+          'value' => $quizScoreId
         ]
       ]
     ]);

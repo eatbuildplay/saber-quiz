@@ -27,9 +27,6 @@ var Quiz = {
 
   init: function() {
 
-console.log( "poohiulgyufytdtr" )
-    console.log( Quiz.id )
-
     if( !Quiz.id ) {
       return;
     }
@@ -40,22 +37,8 @@ console.log( "poohiulgyufytdtr" )
 
     Quiz.showStart();
     Quiz.startClickHandler();
-
     Quiz.restartClickHandler();
 
-    Quiz.viewScore();
-
-  },
-
-  viewScore: function() {
-
-
-
-
-  },
-
-  restartClickHandler: function() {
-    jQuery(document).on('click', '.quiz-control-restart', Quiz.showStart);
   },
 
   timelineItemCount: function() {
@@ -105,6 +88,10 @@ console.log( "poohiulgyufytdtr" )
     jQuery(document).on('click', '.quiz-control-start', Quiz.start);
   },
 
+  restartClickHandler: function() {
+    jQuery(document).on('click', '.quiz-control-restart', Quiz.showStart);
+  },
+
   start: function() {
 
     // make QuizScore
@@ -132,12 +119,16 @@ console.log( "poohiulgyufytdtr" )
     jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
       response = JSON.parse(response);
-
-      console.log(response.quizScore)
-
       Quiz.score = response.quizScore;
 
     });
+
+  },
+
+  viewScore: function() {
+
+    var $template = jQuery('#quiz-score-results').html();
+    Quiz.canvas.body.html( $template );
 
   },
 
@@ -280,6 +271,8 @@ console.log( "poohiulgyufytdtr" )
     jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
        response = JSON.parse(response);
+
+       console.log(response.quizScore);
 
        // update quiz score
        Quiz.score = response.quizScore;
