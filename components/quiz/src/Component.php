@@ -26,6 +26,15 @@ class Component {
     add_filter('single_template', [$this, 'singlePageTemplates'] );
     add_action('wp', [$this, 'setGlobals']);
 
+    add_action( 'elementor/widgets/widgets_registered', [ $this, 'initWidgets' ] );
+
+  }
+
+  public function initWidgets() {
+
+    require_once( SABER_QUIZ_PATH . 'components/quiz/widgets/QuizWidget.php' );
+    \Elementor\Plugin::instance()->widgets_manager->register_widget_type( new QuizWidget() );
+
   }
 
   public function setGlobals() {
