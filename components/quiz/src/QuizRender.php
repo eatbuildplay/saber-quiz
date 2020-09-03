@@ -68,6 +68,74 @@ class QuizRender {
 
   }
 
+  public function renderElementorCanvas() {
+
+    // setup template
+    $template = new \SaberQuiz\Template();
+    $template->path = 'components/quiz/templates/';
+
+    $content = '';
+
+    // main template
+    $template->name = 'quiz-canvas';
+    $template->data = array(
+      'quiz' => $this->quiz
+    );
+    $content .= $template->get();
+    print $content;
+
+  }
+
+  public function renderElementorStartPage() {
+
+    // setup template
+    $template = new \SaberQuiz\Template();
+    $template->path = 'components/quiz/templates/elementor/';
+
+    $content = '';
+
+    // start screen template
+    $template->name = 'quiz-start';
+    $template->data = array();
+    $content .= $template->get();
+
+    print $content;
+
+  }
+
+  public function renderElementorEndPage() {
+
+    $template = new \SaberQuiz\Template();
+    $template->path = 'components/quiz/templates/elementor/';
+
+    $template->name = 'quiz-end';
+    $template->data = array(
+      'quiz' => $this->quiz
+    );
+    print $template->get();
+
+  }
+
+  public function renderElementorDivider() {
+
+    print '<div style="margin: 10px 0 10px 0;color: #B2B2B2;"><hr /></div>';
+
+  }
+
+  public function renderElementorQuestionPage() {
+
+    $template = new \SaberQuiz\Template();
+    $template->path = 'components/quiz/templates/elementor/';
+
+    $template->name = 'quiz-question';
+    $template->data = array(
+      'quiz' => $this->quiz
+    );
+    print $template->get();
+
+  }
+
+
 
   public function jxQuizRecordAnswer() {
 

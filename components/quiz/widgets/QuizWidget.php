@@ -9,6 +9,24 @@ use \Elementor\Scheme_Typography;
 
 class QuizWidget extends \Elementor\Widget_Base {
 
+	public function __construct($data = [], $args = null) {
+
+		parent::__construct($data, $args);
+
+		wp_register_script(
+			'quiz-elementor',
+			SABER_QUIZ_URL . 'components/quiz/assets/quiz-elementor.js',
+			[ 'elementor-frontend' ],
+			'1.0.0',
+			true
+		);
+
+	}
+
+	public function get_script_depends() {
+		return [ 'quiz-elementor' ];
+	}
+
 	public function get_name() {
 		return 'saber_quiz';
 	}
@@ -287,10 +305,22 @@ class QuizWidget extends \Elementor\Widget_Base {
   protected function render() {
 
 		$settings = $this->get_settings_for_display();
+		$quizRender = new QuizRender();
 
-    $quizId = 32;
-    $quizRender = new QuizRender();
-    $quizRender->render( $quizId );
+		if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
+
+			$quizRender->renderElementorCanvas();
+
+			$quizRender->renderElementorQuestionPage();
+			$quizRender->renderElementorDivider();
+			$quizRender->renderElementorStartPage();
+			$quizRender->renderElementorDivider();
+			$quizRender->renderElementorEndPage();
+
+		} else {
+			$quizId = 32;
+	    $quizRender->render( $quizId );
+		}
 
 	}
 
