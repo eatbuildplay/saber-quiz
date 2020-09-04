@@ -66,6 +66,26 @@ class QuizRender {
 
   }
 
+  public function renderPreview( $quizId, $settings ) {
+
+    $this->settings = $settings;
+
+    // load quiz model from passed $quizId or current post
+    if( $quizId ) {
+      $this->quiz = Model\Quiz::load( $quizId );
+    } else {
+      global $post;
+      $this->quiz = Model\Quiz::load( $post->ID );
+    }
+
+    $this->renderElementorQuestionPage();
+    $this->renderElementorDivider();
+    $this->renderElementorStartPage();
+    $this->renderElementorDivider();
+    $this->renderElementorEndPage();
+
+  }
+
   public function renderElementorCanvas() {
 
     // setup template
@@ -76,9 +96,10 @@ class QuizRender {
 
     // main template
     $template->name = 'quiz-canvas';
-    $template->data = array(
-      'quiz' => $this->quiz
-    );
+    $template->data = [
+      'quiz' => $this->quiz,
+      'settings' => $this->settings
+    ];
     $content .= $template->get();
     print $content;
 
@@ -94,7 +115,10 @@ class QuizRender {
 
     // start screen template
     $template->name = 'quiz-start';
-    $template->data = array();
+    $template->data = [
+      'quiz' => $this->quiz,
+      'settings' => $this->settings
+    ];
     $content .= $template->get();
 
     print $content;
@@ -107,9 +131,10 @@ class QuizRender {
     $template->path = 'components/quiz/templates/elementor/';
 
     $template->name = 'quiz-end';
-    $template->data = array(
-      'quiz' => $this->quiz
-    );
+    $template->data = [
+      'quiz' => $this->quiz,
+      'settings' => $this->settings
+    ];
     print $template->get();
 
   }
@@ -126,14 +151,13 @@ class QuizRender {
     $template->path = 'components/quiz/templates/elementor/';
 
     $template->name = 'quiz-question';
-    $template->data = array(
-      'quiz' => $this->quiz
-    );
+    $template->data = [
+      'quiz' => $this->quiz,
+      'settings' => $this->settings
+    ];
     print $template->get();
 
   }
-
-
 
   public function jxQuizRecordAnswer() {
 

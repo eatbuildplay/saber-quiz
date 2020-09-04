@@ -10,7 +10,7 @@
 
 var Quiz = {
 
-  id: jQuery('#quiz-canvas').data('quiz-id'),
+  id: jQuery('.quiz-canvas').data('quiz-id'),
   canvas: {
     body: jQuery('#quiz-body-canvas'),
     controls: jQuery('#quiz-controls-canvas'),

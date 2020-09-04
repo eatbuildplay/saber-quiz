@@ -64,6 +64,43 @@ class QuizWidget extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'show_description',
+			[
+				'label' => __( 'Show Quiz Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'Show', 'your-plugin' ),
+				'label_off' => __( 'Hide', 'your-plugin' ),
+				'return_value' => '1',
+				'default' => '1',
+			]
+		);
+
+		$this->add_control(
+			'start_page_override_quiz_title',
+			[
+				'label' => __( 'Override Quiz Title', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'your-plugin' ),
+				'label_off' => __( 'No', 'your-plugin' ),
+				'return_value' => '1',
+				'default' => '0',
+			]
+		);
+
+		$this->add_control(
+			'start_page_headline_override',
+			[
+				'label' => __( 'Start Page Headline', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '', 'plugin-domain' ),
+				'placeholder' => __( 'Start Page Headline', 'plugin-domain' ),
+				'condition' => [
+        	'start_page_override_quiz_title' => '1'
+        ],
+			]
+		);
+
     $this->end_controls_section();
 
     /* Style > Start Page */
@@ -75,35 +112,45 @@ class QuizWidget extends \Elementor\Widget_Base {
 			]
 		);
 
+		/* Style > Start Page > Headline */
+		$this->add_control(
+			'start_page_headline_heading',
+			array(
+				'label'     => esc_html__( 'Headline/Title', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
     $this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
+				'label' => 'Headline Typography',
 				'name'     => 'start_header_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} ' . '.quiz-single-start h2',
+				'selector' => '{{WRAPPER}} ' . '.quiz-start-page h1',
 			)
     );
 
-    $this->add_group_control(
-			Group_Control_Border::get_type(),
+		$this->add_control(
+			'start_page_headline_text_color',
 			array(
-				'name'     => 'start_button_border',
-				'selector' => '{{WRAPPER}} ' . '.quiz-single-start button',
-			)
-    );
-
-    $this->add_control(
-			'start_button_color',
-			array(
-				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
+				'label'     => esc_html__( 'Headline Text Color', 'saber-quiz' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-single-start button' => 'color: {{VALUE}}',
+          '{{WRAPPER}} ' . '.quiz-start-page h1' => 'color: {{VALUE}}',
         ]
       )
 		);
 
-		/* Start Button Styles */
+		/* Style > Start Page > Start Button */
+		$this->add_control(
+			'start_page_start_button_heading',
+			array(
+				'label'     => esc_html__( 'Start Button', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
     $this->start_controls_tabs( 'start_button_styles' );
 
     $this->start_controls_tab(
@@ -113,13 +160,24 @@ class QuizWidget extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'start_button_text_color',
+			array(
+				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-start-page button' => 'color: {{VALUE}}',
+        ]
+      )
+		);
+
     $this->add_control(
 			'start_button_background_color',
 			array(
 				'label'     => esc_html__( 'Button Background Color', 'saber-quiz' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-single-start button' => 'background-color: {{VALUE}}',
+          '{{WRAPPER}} ' . '.quiz-start-page button' => 'background-color: {{VALUE}}',
         ]
       ),
 			25
@@ -127,11 +185,23 @@ class QuizWidget extends \Elementor\Widget_Base {
 
     $this->end_controls_tab();
 
+		/* Style > Start Page > Start Button > Hover */
     $this->start_controls_tab(
 			'start_button_style_hover',
 			array(
 				'label' => esc_html__( 'Hover', 'saber-quiz' ),
 			)
+		);
+
+		$this->add_control(
+			'start_button_text_color_hover',
+			array(
+				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-start-page button:hover' => 'color: {{VALUE}}',
+        ]
+      )
 		);
 
     $this->add_control(
@@ -140,7 +210,7 @@ class QuizWidget extends \Elementor\Widget_Base {
 				'label'     => esc_html__( 'Button Background Color', 'saber-quiz' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-single-start button:hover' => 'background-color: {{VALUE}}',
+          '{{WRAPPER}} ' . '.quiz-start-page button:hover' => 'background-color: {{VALUE}}',
         ]
       ),
 			25
@@ -148,6 +218,48 @@ class QuizWidget extends \Elementor\Widget_Base {
 
     $this->end_controls_tab();
     $this->end_controls_tabs();
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'start_button_border',
+				'selector' => '{{WRAPPER}} ' . '.quiz-start-page button',
+			)
+    );
+
+		$this->add_control(
+			'start_page_general_heading',
+			array(
+				'label'     => esc_html__( 'General Styles', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
+		$this->add_responsive_control(
+      'end_page_headline_align',
+      [
+        'label' => __( 'Alignment', 'elementor' ),
+        'type' => Controls_Manager::CHOOSE,
+        'options' => [
+          'left' => [
+            'title' => __( 'Left', 'elementor' ),
+            'icon' => 'eicon-text-align-left',
+          ],
+          'center' => [
+            'title' => __( 'Center', 'elementor' ),
+            'icon' => 'eicon-text-align-center',
+          ],
+          'right' => [
+            'title' => __( 'Right', 'elementor' ),
+            'icon' => 'eicon-text-align-right',
+          ],
+        ],
+        'selectors' => [
+          '{{WRAPPER}} .quiz-start-page' => 'text-align: {{VALUE}}',
+        ],
+      ]
+    );
+
     $this->end_controls_section();
 
     /* Style > End Page */
@@ -462,20 +574,12 @@ class QuizWidget extends \Elementor\Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
+		$quizId = 32;
 		$quizRender = new QuizRender();
 
 		if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
-
-			$quizRender->renderElementorCanvas( 0, $settings );
-
-			$quizRender->renderElementorQuestionPage();
-			$quizRender->renderElementorDivider();
-			$quizRender->renderElementorStartPage();
-			$quizRender->renderElementorDivider();
-			$quizRender->renderElementorEndPage();
-
+			$quizRender->renderPreview( $quizId, $settings );
 		} else {
-			$quizId = 32;
 	    $quizRender->render( $quizId, $settings );
 		}
 

@@ -1,5 +1,5 @@
 <div
-  id="quiz-canvas"
+  class="quiz-canvas"
   data-quiz-id="<?php print $quiz->id; ?>"
   >
   <div id="quiz-body-canvas"></div>
