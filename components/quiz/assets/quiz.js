@@ -49,6 +49,8 @@ var Quiz = {
 
     Quiz.hideControls();
 
+    console.log( Quiz.score );
+
     // quiz single end template
     var $template = jQuery('#quiz-single-end').html();
     Quiz.canvas.body.html( $template );
@@ -190,7 +192,7 @@ var Quiz = {
       response = JSON.parse(response);
       Quiz.quiz = response.quiz;
 
-      $(document).trigger( 'saber_quiz_loaded', Quiz.quiz );
+      jQuery(document).trigger( 'saber_quiz_loaded', Quiz.quiz );
 
     });
 
