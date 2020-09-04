@@ -59,11 +59,6 @@ class QuizRender {
     $template->data = array();
     $content .= $template->get();
 
-    // quiz score results
-    $template->name = 'quiz-score-results';
-    $template->data = array();
-    $content .= $template->get();
-
     print $content;
 
   }
