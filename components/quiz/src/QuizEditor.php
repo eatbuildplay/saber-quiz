@@ -20,7 +20,7 @@ class QuizEditor {
 
   public function jxQuestionSearch() {
 
-    $search = $_POST['search'];
+    $search = sanitize_text_field( $_POST['search'] );
 
     // search for lessons
     $args = [
@@ -91,12 +91,17 @@ class QuizEditor {
       return $postId;
     }
 
-    $newValue = $_POST['quiz-editor-data'];
+    $newValue = sanitize_text_field( $_POST['quiz-editor-data'] );
 
     $key = 'saber_quiz_timeline_data';
     $value = get_post_meta( $postId, $key, true );
 
     update_post_meta( $postId, $key, $newValue );
+
+    // quiz description
+    $quizDescription = sanitize_text_field( $_POST['quiz_description'] );
+
+    update_post_meta( $postId, 'quiz_description', $quizDescription );
 
   }
 

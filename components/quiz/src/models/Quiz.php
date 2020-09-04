@@ -6,6 +6,7 @@ class Quiz {
 
   public $id;
   public $title;
+  public $description;
   public $permalink;
   public $type = 'quiz';
   public $timeline;
@@ -38,6 +39,8 @@ class Quiz {
         }
       }
     }
+
+    $obj->description = get_post_meta( $post->ID, 'quiz_description', 1 );
 
     return $obj;
 

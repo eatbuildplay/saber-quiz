@@ -84,7 +84,7 @@ class QuestionEditor {
       $value
     );
 
-    $optionsPassed = $_POST['question_options'];
+    $optionsPassed = sanitize_text_field( $_POST['question_options'] );
     $optionsStripSlashed = stripslashes( $optionsPassed );
     $optionsRaw = json_decode( $optionsStripSlashed );
 

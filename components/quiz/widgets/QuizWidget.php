@@ -45,18 +45,26 @@ class QuizWidget extends \Elementor\Widget_Base {
 
   protected function _register_controls() {
 
+		/* Content > Start Page */
     $this->start_controls_section(
-			'content_section',
+			'content_start_page_section',
 			[
-				'label' => __( 'Content', 'saber-quiz' ),
+				'label' => __( 'Start Page', 'saber-quiz' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-
+		$this->add_control(
+			'start_quiz_button_label',
+			[
+				'label' => __( 'Start Button Label', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Start Quiz', 'plugin-domain' ),
+				'placeholder' => __( 'Start Button Label', 'plugin-domain' ),
+			]
+		);
 
     $this->end_controls_section();
-
 
     /* Style > Start Page */
     $this->start_controls_section(
@@ -453,11 +461,12 @@ class QuizWidget extends \Elementor\Widget_Base {
   protected function render() {
 
 		$settings = $this->get_settings_for_display();
+
 		$quizRender = new QuizRender();
 
 		if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
 
-			$quizRender->renderElementorCanvas();
+			$quizRender->renderElementorCanvas( 0, $settings );
 
 			$quizRender->renderElementorQuestionPage();
 			$quizRender->renderElementorDivider();
@@ -467,7 +476,7 @@ class QuizWidget extends \Elementor\Widget_Base {
 
 		} else {
 			$quizId = 32;
-	    $quizRender->render( $quizId );
+	    $quizRender->render( $quizId, $settings );
 		}
 
 	}

@@ -190,6 +190,8 @@ var Quiz = {
       response = JSON.parse(response);
       Quiz.quiz = response.quiz;
 
+      $(document).trigger( 'saber_quiz_loaded', Quiz.quiz );
+
     });
 
   },

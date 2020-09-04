@@ -13,7 +13,7 @@ class QuizRender {
 
   }
 
-  public function render( $quizId = 0 ) {
+  public function render( $quizId = 0, $settings = [] ) {
 
     // load quiz model from passed $quizId or current post
     if( $quizId ) {
@@ -51,7 +51,10 @@ class QuizRender {
 
     // start screen template
     $template->name = 'quiz-start';
-    $template->data = array();
+    $template->data = [
+      'quiz' => $this->quiz,
+      'settings' => $settings
+    ];
     $content .= $template->get();
 
     // end screen template
