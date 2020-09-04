@@ -3,7 +3,10 @@
   <div id="quiz-body-canvas">
 
     <div class="question question-1" data-question-id="1">
-      <h3>Question 1</h3>
+
+      <?php if( $settings['question_page_show_question_numbers'] == 1 ) { ?>
+        <h3>Question 1</h3>
+      <?php } ?>
       <h1>What is 1+1?</h1>
       <ul class="selectable">
         <li class="question-option question-option-123"

@@ -43,6 +43,9 @@ class QuizRender {
 
     // question template
     $template->name = 'quiz-question';
+    $template->data = [
+      'settings' => $settings
+    ];
     $content .= $template->get();
 
     // question options template
