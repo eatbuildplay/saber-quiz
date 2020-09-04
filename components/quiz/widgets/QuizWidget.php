@@ -353,6 +353,18 @@ class QuizWidget extends \Elementor\Widget_Base {
       ]
     );
 
+		$this->add_responsive_control(
+			'end_page_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'saber-quiz' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .quiz-question-page' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
     $this->end_controls_section();
 
 	}

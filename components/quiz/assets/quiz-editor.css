@@ -105,3 +105,8 @@
 #quiz-editor-data {
   display: none;
 }
+
+/* Question Page */
+.quiz-question-page {
+  padding: 25px;
+}
