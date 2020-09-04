@@ -103,6 +103,17 @@ class QuizWidget extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 
+		/* Content > Question Page */
+		$this->start_controls_section(
+			'content_question_page_section',
+			[
+				'label' => __( 'Question Page', 'saber-quiz' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->end_controls_section();
+
 		/* Content > End Page */
     $this->start_controls_section(
 			'content_end_page_section',
@@ -289,6 +300,7 @@ class QuizWidget extends \Elementor\Widget_Base {
 			)
     );
 
+		/* Style > Start Page > Genearl Styles */
 		$this->add_control(
 			'start_page_general_heading',
 			array(
@@ -322,189 +334,21 @@ class QuizWidget extends \Elementor\Widget_Base {
       ]
     );
 
-    $this->end_controls_section();
-
-    /* Style > End Page */
-    $this->start_controls_section(
-			'end_page_section',
-			[
-				'label' => __( 'End Page', 'saber-quiz' ),
-				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		/* Style > End Page > Headline */
-		$this->add_control(
-			'end_page_headline_heading',
-			array(
-				'label'     => esc_html__( 'Headline', 'saber-quiz' ),
-				'type'      => Controls_Manager::HEADING,
-      )
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'end_page_headline_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} ' . '.quiz-end-page h2',
-			)
-    );
-
-		$this->add_control(
-			'end_page_headline_text_color',
-			array(
-				'label'     => esc_html__( 'Text Color', 'saber-quiz' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-end-page h2' => 'color: {{VALUE}}',
-        ]
-      )
-		);
-
-		/* Style > End Page > Body Text */
-		$this->add_control(
-			'end_page_body_heading',
-			array(
-				'label'     => esc_html__( 'Body', 'saber-quiz' ),
-				'type'      => Controls_Manager::HEADING,
-      )
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'end_page_body_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
-				'selector' => '{{WRAPPER}} ' . '.quiz-end-page .quiz-end-page-body',
-			)
-    );
-
-		$this->add_control(
-			'end_page_body_text_color',
-			array(
-				'label'     => esc_html__( 'Text Color', 'saber-quiz' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-end-page .quiz-end-page-body' => 'color: {{VALUE}}',
-        ]
-      )
-		);
-
-		/* Style > End Page > Restart Button */
-    $this->start_controls_tabs( 'restart_button_styles' );
-
-    $this->start_controls_tab(
-			'restart_button_style_normal',
-			array(
-				'label' => esc_html__( 'Normal', 'saber-quiz' ),
-			)
-		);
-
-		$this->add_control(
-			'restart_button_text_color',
-			array(
-				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-control-restart' => 'color: {{VALUE}}',
-        ]
-      )
-		);
-
-    $this->add_control(
-			'restart_button_background_color',
-			array(
-				'label'     => esc_html__( 'Button Background Color', 'saber-quiz' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-control-restart' => 'background-color: {{VALUE}}',
-        ]
-      ),
-			25
-		);
-
-    $this->end_controls_tab();
-
-    $this->start_controls_tab(
-			'restart_button_style_hover',
-			array(
-				'label' => esc_html__( 'Hover', 'saber-quiz' ),
-			)
-		);
-
-		$this->add_control(
-			'restart_button_text_color_hover',
-			array(
-				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-control-restart:hover' => 'color: {{VALUE}}',
-        ]
-      )
-		);
-
-    $this->add_control(
-			'restart_button_background_color_hover',
-			array(
-				'label'     => esc_html__( 'Button Background Color', 'saber-quiz' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-          '{{WRAPPER}} ' . '.quiz-control-restart:hover' => 'background-color: {{VALUE}}',
-        ]
-      )
-		);
-
-    $this->end_controls_tab();
-    $this->end_controls_tabs();
-
-		/* Style > End Page > General Styles */
-		$this->add_control(
-			'end_page_general_heading',
-			array(
-				'label'     => esc_html__( 'General Styles', 'saber-quiz' ),
-				'type'      => Controls_Manager::HEADING,
-      )
-		);
-
 		$this->add_responsive_control(
-      'end_page_align',
-      [
-        'label' => __( 'Alignment', 'elementor' ),
-        'type' => Controls_Manager::CHOOSE,
-        'options' => [
-          'left' => [
-            'title' => __( 'Left', 'elementor' ),
-            'icon' => 'eicon-text-align-left',
-          ],
-          'center' => [
-            'title' => __( 'Center', 'elementor' ),
-            'icon' => 'eicon-text-align-center',
-          ],
-          'right' => [
-            'title' => __( 'Right', 'elementor' ),
-            'icon' => 'eicon-text-align-right',
-          ],
-        ],
-        'selectors' => [
-          '{{WRAPPER}} .quiz-end-page' => 'text-align: {{VALUE}}',
-        ],
-      ]
-    );
-
-		$this->add_responsive_control(
-			'end_page_padding',
+			'start_page_padding',
 			array(
 				'label'      => esc_html__( 'Padding', 'saber-quiz' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .quiz-end-page' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .quiz-start-page' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
 
     $this->end_controls_section();
+
+    $this->style_controls_end_page();
 
     /* Style > Question Page */
     $this->start_controls_section(
@@ -644,6 +488,229 @@ class QuizWidget extends \Elementor\Widget_Base {
         ],
       ]
     );
+
+    $this->end_controls_section();
+
+	}
+
+	protected function style_controls_end_page() {
+
+		/* Style > End Page */
+    $this->start_controls_section(
+			'end_page_section',
+			[
+				'label' => __( 'End Page', 'saber-quiz' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		/* Style > End Page > Headline */
+		$this->add_control(
+			'end_page_headline_heading',
+			array(
+				'label'     => esc_html__( 'Headline Text', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'end_page_headline_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} ' . '.quiz-end-page h1.quiz-end-page-headline',
+			)
+    );
+
+		$this->add_control(
+			'end_page_headline_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-end-page h1.quiz-end-page-headline' => 'color: {{VALUE}}',
+        ]
+      )
+		);
+
+		/* Style > End Page > Score Heading */
+		$this->add_control(
+			'end_page_score_heading_heading',
+			array(
+				'label'     => esc_html__( 'Score Heading', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'end_page_score_heading_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} ' . '.quiz-end-page .quiz-score-results',
+			)
+    );
+
+		$this->add_control(
+			'end_page_score_heading_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-end-page .quiz-score-results' => 'color: {{VALUE}}',
+        ]
+      )
+		);
+
+		/* Style > End Page > Score Number */
+		$this->add_control(
+			'end_page_score_number_heading',
+			array(
+				'label'     => esc_html__( 'Score Number', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'end_page_score_number_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'selector' => '{{WRAPPER}} ' . '.quiz-end-page .quiz-score-main-result',
+			)
+    );
+
+		$this->add_control(
+			'end_page_score_number_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-end-page .quiz-score-main-result' => 'color: {{VALUE}}',
+        ]
+      )
+		);
+
+		/* Style > End Page > Restart Button */
+		$this->add_control(
+			'end_page_restart_button_heading',
+			array(
+				'label'     => esc_html__( 'Restart Button', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+			)
+		);
+
+    $this->start_controls_tabs( 'restart_button_styles' );
+
+    $this->start_controls_tab(
+			'restart_button_style_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'saber-quiz' ),
+			)
+		);
+
+		$this->add_control(
+			'restart_button_text_color',
+			array(
+				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-control-restart' => 'color: {{VALUE}}',
+        ]
+      )
+		);
+
+    $this->add_control(
+			'restart_button_background_color',
+			array(
+				'label'     => esc_html__( 'Button Background Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-control-restart' => 'background-color: {{VALUE}}',
+        ]
+      ),
+			25
+		);
+
+    $this->end_controls_tab();
+
+    $this->start_controls_tab(
+			'restart_button_style_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'saber-quiz' ),
+			)
+		);
+
+		$this->add_control(
+			'restart_button_text_color_hover',
+			array(
+				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-control-restart:hover' => 'color: {{VALUE}}',
+        ]
+      )
+		);
+
+    $this->add_control(
+			'restart_button_background_color_hover',
+			array(
+				'label'     => esc_html__( 'Button Background Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-control-restart:hover' => 'background-color: {{VALUE}}',
+        ]
+      )
+		);
+
+    $this->end_controls_tab();
+    $this->end_controls_tabs();
+
+		/* Style > End Page > General Styles */
+		$this->add_control(
+			'end_page_general_heading',
+			array(
+				'label'     => esc_html__( 'General Styles', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
+		$this->add_responsive_control(
+      'end_page_align',
+      [
+        'label' => __( 'Alignment', 'elementor' ),
+        'type' => Controls_Manager::CHOOSE,
+        'options' => [
+          'left' => [
+            'title' => __( 'Left', 'elementor' ),
+            'icon' => 'eicon-text-align-left',
+          ],
+          'center' => [
+            'title' => __( 'Center', 'elementor' ),
+            'icon' => 'eicon-text-align-center',
+          ],
+          'right' => [
+            'title' => __( 'Right', 'elementor' ),
+            'icon' => 'eicon-text-align-right',
+          ],
+        ],
+        'selectors' => [
+          '{{WRAPPER}} .quiz-end-page' => 'text-align: {{VALUE}}',
+        ],
+      ]
+    );
+
+		$this->add_responsive_control(
+			'end_page_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'saber-quiz' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .quiz-end-page' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
     $this->end_controls_section();
 
