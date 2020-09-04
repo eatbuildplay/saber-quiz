@@ -59,7 +59,10 @@ class QuizRender {
 
     // end screen template
     $template->name = 'quiz-end';
-    $template->data = array();
+    $template->data = [
+      'quiz' => $this->quiz,
+      'settings' => $settings
+    ];
     $content .= $template->get();
 
     print $content;

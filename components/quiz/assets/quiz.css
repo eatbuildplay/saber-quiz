@@ -72,3 +72,7 @@
   border-radius: 8px;
   min-width: 250px;
 }
+
+.quiz-score-main-result {
+  font-size: 3.5em;
+}

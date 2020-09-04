@@ -57,20 +57,20 @@ class QuizWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'start_quiz_button_label',
 			[
-				'label' => __( 'Start Button Label', 'plugin-domain' ),
+				'label' => __( 'Start Button Label', 'saber-quiz' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Start Quiz', 'plugin-domain' ),
-				'placeholder' => __( 'Start Button Label', 'plugin-domain' ),
+				'default' => __( 'Start Quiz', 'saber-quiz' ),
+				'placeholder' => __( 'Start Button Label', 'saber-quiz' ),
 			]
 		);
 
 		$this->add_control(
 			'show_description',
 			[
-				'label' => __( 'Show Quiz Description', 'plugin-domain' ),
+				'label' => __( 'Show Quiz Description', 'saber-quiz' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'your-plugin' ),
-				'label_off' => __( 'Hide', 'your-plugin' ),
+				'label_on' => __( 'Show', 'saber-quiz' ),
+				'label_off' => __( 'Hide', 'saber-quiz' ),
 				'return_value' => '1',
 				'default' => '1',
 			]
@@ -79,10 +79,10 @@ class QuizWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'start_page_override_quiz_title',
 			[
-				'label' => __( 'Override Quiz Title', 'plugin-domain' ),
+				'label' => __( 'Override Quiz Title', 'saber-quiz' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'your-plugin' ),
-				'label_off' => __( 'No', 'your-plugin' ),
+				'label_on' => __( 'Yes', 'saber-quiz' ),
+				'label_off' => __( 'No', 'saber-quiz' ),
 				'return_value' => '1',
 				'default' => '0',
 			]
@@ -91,15 +91,77 @@ class QuizWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'start_page_headline_override',
 			[
-				'label' => __( 'Start Page Headline', 'plugin-domain' ),
+				'label' => __( 'Start Page Headline', 'saber-quiz' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '', 'plugin-domain' ),
-				'placeholder' => __( 'Start Page Headline', 'plugin-domain' ),
+				'default' => __( '', 'saber-quiz' ),
+				'placeholder' => __( 'Start Page Headline', 'saber-quiz' ),
 				'condition' => [
         	'start_page_override_quiz_title' => '1'
         ],
 			]
 		);
+
+		$this->end_controls_section();
+
+		/* Content > End Page */
+    $this->start_controls_section(
+			'content_end_page_section',
+			[
+				'label' => __( 'End Page', 'saber-quiz' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'end_page_override_headline',
+			[
+				'label' => __( 'Override End Page Headline', 'saber-quiz' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'saber-quiz' ),
+				'label_off' => __( 'No', 'saber-quiz' ),
+				'return_value' => '1',
+				'default' => '0',
+			]
+		);
+
+		$this->add_control(
+			'end_page_headline_content',
+			[
+				'label' => __( 'End Page Headline', 'saber-quiz' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Quiz Over', 'saber-quiz' ),
+				'placeholder' => __( 'End Page Headline', 'saber-quiz' ),
+				'condition' => [
+        	'end_page_override_headline' => '1'
+        ],
+			]
+		);
+
+		$this->add_control(
+			'end_page_score_header_override',
+			[
+				'label' => __( 'Override Score Header Text', 'saber-quiz' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => __( 'Yes', 'saber-quiz' ),
+				'label_off' => __( 'No', 'saber-quiz' ),
+				'return_value' => '1',
+				'default' => '0',
+			]
+		);
+
+		$this->add_control(
+			'end_page_score_header',
+			[
+				'label' => __( 'Score Header Text', 'saber-quiz' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'You Scored', 'saber-quiz' ),
+				'placeholder' => __( 'End Page Headline', 'saber-quiz' ),
+				'condition' => [
+        	'end_page_score_header_override' => '1'
+        ],
+			]
+		);
+
 
     $this->end_controls_section();
 
@@ -280,31 +342,6 @@ class QuizWidget extends \Elementor\Widget_Base {
       )
 		);
 
-		$this->add_responsive_control(
-      'end_page_headline_align',
-      [
-        'label' => __( 'Alignment', 'elementor' ),
-        'type' => Controls_Manager::CHOOSE,
-        'options' => [
-          'left' => [
-            'title' => __( 'Left', 'elementor' ),
-            'icon' => 'eicon-text-align-left',
-          ],
-          'center' => [
-            'title' => __( 'Center', 'elementor' ),
-            'icon' => 'eicon-text-align-center',
-          ],
-          'right' => [
-            'title' => __( 'Right', 'elementor' ),
-            'icon' => 'eicon-text-align-right',
-          ],
-        ],
-        'selectors' => [
-          '{{WRAPPER}} .quiz-end-page h2' => 'text-align: {{VALUE}}',
-        ],
-      ]
-    );
-
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
@@ -334,31 +371,6 @@ class QuizWidget extends \Elementor\Widget_Base {
       )
 		);
 
-		$this->add_responsive_control(
-      'end_page_body_align',
-      [
-        'label' => __( 'Alignment', 'elementor' ),
-        'type' => Controls_Manager::CHOOSE,
-        'options' => [
-          'left' => [
-            'title' => __( 'Left', 'elementor' ),
-            'icon' => 'eicon-text-align-left',
-          ],
-          'center' => [
-            'title' => __( 'Center', 'elementor' ),
-            'icon' => 'eicon-text-align-center',
-          ],
-          'right' => [
-            'title' => __( 'Right', 'elementor' ),
-            'icon' => 'eicon-text-align-right',
-          ],
-        ],
-        'selectors' => [
-          '{{WRAPPER}} .quiz-end-page .quiz-end-page-body' => 'text-align: {{VALUE}}',
-        ],
-      ]
-    );
-
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
@@ -379,7 +391,7 @@ class QuizWidget extends \Elementor\Widget_Base {
       )
 		);
 
-		/* Restart Button Styles */
+		/* Style > End Page > Restart Button */
     $this->start_controls_tabs( 'restart_button_styles' );
 
     $this->start_controls_tab(
@@ -387,6 +399,17 @@ class QuizWidget extends \Elementor\Widget_Base {
 			array(
 				'label' => esc_html__( 'Normal', 'saber-quiz' ),
 			)
+		);
+
+		$this->add_control(
+			'restart_button_text_color',
+			array(
+				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-control-restart' => 'color: {{VALUE}}',
+        ]
+      )
 		);
 
     $this->add_control(
@@ -410,6 +433,17 @@ class QuizWidget extends \Elementor\Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'restart_button_text_color_hover',
+			array(
+				'label'     => esc_html__( 'Button Text Color', 'saber-quiz' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+          '{{WRAPPER}} ' . '.quiz-control-restart:hover' => 'color: {{VALUE}}',
+        ]
+      )
+		);
+
     $this->add_control(
 			'restart_button_background_color_hover',
 			array(
@@ -418,12 +452,57 @@ class QuizWidget extends \Elementor\Widget_Base {
 				'selectors' => [
           '{{WRAPPER}} ' . '.quiz-control-restart:hover' => 'background-color: {{VALUE}}',
         ]
-      ),
-			25
+      )
 		);
 
     $this->end_controls_tab();
     $this->end_controls_tabs();
+
+		/* Style > End Page > General Styles */
+		$this->add_control(
+			'end_page_general_heading',
+			array(
+				'label'     => esc_html__( 'General Styles', 'saber-quiz' ),
+				'type'      => Controls_Manager::HEADING,
+      )
+		);
+
+		$this->add_responsive_control(
+      'end_page_align',
+      [
+        'label' => __( 'Alignment', 'elementor' ),
+        'type' => Controls_Manager::CHOOSE,
+        'options' => [
+          'left' => [
+            'title' => __( 'Left', 'elementor' ),
+            'icon' => 'eicon-text-align-left',
+          ],
+          'center' => [
+            'title' => __( 'Center', 'elementor' ),
+            'icon' => 'eicon-text-align-center',
+          ],
+          'right' => [
+            'title' => __( 'Right', 'elementor' ),
+            'icon' => 'eicon-text-align-right',
+          ],
+        ],
+        'selectors' => [
+          '{{WRAPPER}} .quiz-end-page' => 'text-align: {{VALUE}}',
+        ],
+      ]
+    );
+
+		$this->add_responsive_control(
+			'end_page_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'saber-quiz' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .quiz-end-page' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
     $this->end_controls_section();
 
