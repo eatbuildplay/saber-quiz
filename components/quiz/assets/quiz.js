@@ -85,6 +85,15 @@ var Quiz = {
   },
 
   startClickHandler: function() {
+
+    Quiz.score = {},
+    Quiz.state = {
+      started: false,
+      currentQuestion: {
+        index: 0,
+        question: false
+      }
+    };
     jQuery(document).on('click', '.quiz-control-start', Quiz.start);
   },
 
