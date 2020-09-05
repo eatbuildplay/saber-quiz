@@ -76,3 +76,9 @@
 .quiz-score-main-result {
   font-size: 3.5em;
 }
+
+/* Next Question Button Disabled */
+.quiz-controls .quiz-next.disabled,
+.quiz-controls .quiz-next.disabled:hover {
+  background: #AAA;
+}

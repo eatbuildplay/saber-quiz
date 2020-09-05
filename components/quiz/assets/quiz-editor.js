@@ -10,7 +10,8 @@
 
       /* init load */
       var dataJson = $('#quiz-editor-data').val();
-      // QuizEditor.data = JSON.parse( dataJson );
+      console.log( dataJson )
+      QuizEditor.data.timeline = JSON.parse( dataJson );
 
       /* menu handlers */
       QuizEditor.menuClear();
@@ -36,6 +37,7 @@
         // check for duplicate in timeline
         var isDuplicate = QuizEditor.timelineDuplicateCheck( data );
         if( isDuplicate ) {
+          console.log('item is duplicate')
           return;
         }
 
@@ -84,9 +86,15 @@
     /* Duplicate check */
     timelineDuplicateCheck: function( data ) {
 
+      console.log( data )
+      console.log( QuizEditor.data.timeline )
+
       var isDuplicate = 0;
 
       QuizEditor.data.timeline.forEach( function( item ) {
+
+        console.log( item.id )
+        console.log( data.id )
 
         if( item.id == data.id ) {
           isDuplicate = 1;
@@ -119,11 +127,7 @@
     /* Insert item to timeline */
     insertTimeline: function( data ) {
 
-      if( data.type == 'quiz' ) {
-        var timelineItem = '<div class="quiz-editor-timeline-item quiz-editor-timeline-item-quiz" data-id="' + data.id + '" data-type="lesson">';
-      } else {
-        var timelineItem = '<div class="quiz-editor-timeline-item" data-id="' + data.id + '" data-type="lesson">';
-      }
+      var timelineItem = '<div class="quiz-editor-timeline-item quiz-editor-timeline-item-quiz" data-id="' + data.id + '" data-type="question">';
       timelineItem += data.title;
       timelineItem += '<span class="dashicons dashicons-trash"></span>';
       timelineItem += '</div>';
@@ -134,6 +138,8 @@
     },
 
     sortingHandler: function() {
+
+      console.log('sortingHandler')
 
       // clear existing timeline data
       QuizEditor.data.timeline = [];
@@ -150,6 +156,8 @@
         QuizEditor.data.timeline.push( timelineItem );
 
       });
+
+      console.log( QuizEditor.data.timeline );
 
       $('#quiz-editor-data').val( JSON.stringify(QuizEditor.data.timeline));
 

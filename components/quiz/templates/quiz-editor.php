@@ -49,15 +49,10 @@
 
   </div>
 
-  <?php
-    var_dump($quiz);
-  ?>
-
   <div class="saber-field">
     <label for="quiz_description">Quiz Description</label>
     <textarea id="quiz_description" name="quiz_description"><?php print $quiz->description; ?></textarea>
   </div>
-
 
 </div>
 

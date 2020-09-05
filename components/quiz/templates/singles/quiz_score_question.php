@@ -1,5 +1,5 @@
 <pre>
-<?php 
+<?php
   var_dump( $quizScoreQuestion );
 ?>
 </pre>

@@ -153,7 +153,7 @@ var Quiz = {
 
   next: function() {
 
-    jQuery(document).on('click', '.quiz-next', function() {
+    jQuery(document).on('click', '.quiz-next.enabled', function() {
 
       var $nextQuestionIndex = Quiz.state.currentQuestion.index +1;
       var $question = Quiz.quiz.timeline.items[ $nextQuestionIndex ];
@@ -199,6 +199,10 @@ var Quiz = {
   },
 
   questionShow: function( $question, $questionNumber ) {
+
+    var nextButton = jQuery('.quiz-controls .quiz-next');
+    console.log( nextButton )
+    jQuery('.quiz-controls .quiz-next').addClass('disabled');
 
     // populate templates
     var $template = jQuery('#question-template').html();
@@ -274,12 +278,18 @@ var Quiz = {
     }
     jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
-       response = JSON.parse(response);
+      var nextButton = jQuery('.quiz-controls .quiz-next');
+      console.log( nextButton )
+      nextButton.removeClass('disabled');
+      nextButton.addClass('enabled');
 
-       console.log(response.quizScore);
+       response = JSON.parse(response);
 
        // update quiz score
        Quiz.score = response.quizScore;
+
+       console.log('answer arrived!')
+       console.log( Quiz.score )
 
        // add focus on answered question
        var $questionEl = jQuery('.question-' + response.question.id);
