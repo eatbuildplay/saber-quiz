@@ -8,7 +8,7 @@ class Component {
 
     require_once(SABER_QUIZ_PATH . 'components/reports/src/reports/ReportModel.php');
 
-    add_action('admin_print_scripts-saber-lms_page_saber-reports', [$this, 'adminScripts']);
+    add_action('admin_print_scripts-saber-quiz_page_saber-reports', [$this, 'adminScripts']);
 
   }
 
@@ -23,11 +23,19 @@ class Component {
     // $cts = Content Counts []
     $cts = self::fetchContentCounts();
 
+    $template->name = 'header';
+    $template->data = [];
+    $content .= $template->get();
+
     $template->name = 'chart';
     $template->data = [
       'userCount' => $userCount,
       'cts'       => $cts
     ];
+    $content .= $template->get();
+
+    $template->name = 'footer';
+    $template->data = [];
     $content .= $template->get();
 
     print $content;

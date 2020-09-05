@@ -1,3 +1,13 @@
+/* Dashboard Header */
+.sq-dashboard-header {
+  background: #2A2927;
+  color: #FFF;
+  margin-left: -20px;
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
 #reports-wrap {
   margin: 30px 0;
   padding: 0 30px 0 0px;

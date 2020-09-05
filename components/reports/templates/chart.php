@@ -1,9 +1,5 @@
 <div id="reports-wrap">
 
-  <header id="reports-header">
-    <h1>Saber Quiz Reports</h1>
-  </header>
-
   <!-- Stats Grid -->
   <div class="stat-grid-3">
 
