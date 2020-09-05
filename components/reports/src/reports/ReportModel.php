@@ -1,6 +1,6 @@
 <?php
 
-namespace Saber\Reports;
+namespace SaberQuiz\Reports;
 
 class ReportModel {
 

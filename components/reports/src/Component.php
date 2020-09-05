@@ -1,27 +1,22 @@
 <?php
 
-namespace Saber\Reports;
+namespace SaberQuiz\Reports;
 
-class ReportsComponent {
+class Component {
 
   public function __construct() {
 
-    require_once(SABER_PATH . 'components/reports/src/reports/ReportModel.php');
-    require_once(SABER_PATH . 'components/reports/src/reports/TotalStudentsReport.php');
+    require_once(SABER_QUIZ_PATH . 'components/reports/src/reports/ReportModel.php');
 
     add_action('admin_print_scripts-saber-lms_page_saber-reports', [$this, 'adminScripts']);
 
   }
 
-  public function pageCallback() {
+  public static function pageCallback() {
 
-    $template = new \Saber\Template;
+    $template = new \SaberQuiz\Template;
     $template->path = 'components/reports/templates/';
     $content = '';
-
-    // init reports
-    $report = new TotalStudentsReport();
-    $report->localizeReportData( 'saber-reports' );
 
     $userCount = count_users();
 
@@ -43,11 +38,8 @@ class ReportsComponent {
 
     $cts = new \stdClass;
 
-    $cts->course = \wp_count_posts('course')->publish;
-    $cts->courseRegistration = \wp_count_posts('course_registration')->publish;
-    $cts->lesson = \wp_count_posts('lesson')->publish;
-    $cts->exam = \wp_count_posts('exam')->publish;
-    $cts->examScore = \wp_count_posts('exam_score')->publish;
+    $cts->exam = \wp_count_posts('quiz')->publish;
+    $cts->examScore = \wp_count_posts('quiz_score')->publish;
     $cts->question = \wp_count_posts('question')->publish;
 
     return $cts;
@@ -58,14 +50,14 @@ class ReportsComponent {
 
     wp_enqueue_style(
       'saber-reports',
-      SABER_URL . 'components/reports/assets/reports.css',
+      SABER_QUIZ_URL . 'components/reports/assets/reports.css',
       array(),
       true
     );
 
     wp_enqueue_script(
       'saber-reports',
-      SABER_URL . 'components/reports/assets/reports.js',
+      SABER_QUIZ_URL . 'components/reports/assets/reports.js',
       array('jquery', 'chartjs'),
       SABER_VERSION,
       true

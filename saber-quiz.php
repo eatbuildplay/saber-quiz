@@ -26,17 +26,7 @@ class Plugin {
     require_once( SABER_QUIZ_PATH . 'src/Template.php' );
     require_once( SABER_QUIZ_PATH . 'src/PostType.php' );
 
-    require_once( SABER_QUIZ_PATH . 'components/dashboard/src/DashboardComponent.php' );
-    new \SaberQuiz\Dashboard\DashboardComponent();
-
-    require_once( SABER_QUIZ_PATH . 'components/quiz/src/Component.php' );
-    new \SaberQuiz\Quiz\Component();
-
-    require_once( SABER_QUIZ_PATH . 'components/question/src/Component.php' );
-    new \SaberQuiz\Question\Component();
-
-    require_once( SABER_QUIZ_PATH . 'components/settings/src/SettingsComponent.php' );
-    new \SaberQuiz\Settings\SettingsComponent();
+    $this->loadComponents();
 
     /* admin menu */
     add_action('admin_menu', [$this, 'menu']);
@@ -46,6 +36,29 @@ class Plugin {
 
     /* admin scripts */
     add_action('admin_enqueue_scripts', [$this, 'adminScripts']);
+
+  }
+
+  /*
+   * loadComponents
+   * @TODO add filter load additional components
+   */
+  protected function loadComponents() {
+
+    require_once( SABER_QUIZ_PATH . 'components/dashboard/src/DashboardComponent.php' );
+    new \SaberQuiz\Dashboard\DashboardComponent();
+
+    require_once( SABER_QUIZ_PATH . 'components/reports/src/Component.php' );
+    new \SaberQuiz\Reports\Component();
+
+    require_once( SABER_QUIZ_PATH . 'components/quiz/src/Component.php' );
+    new \SaberQuiz\Quiz\Component();
+
+    require_once( SABER_QUIZ_PATH . 'components/question/src/Component.php' );
+    new \SaberQuiz\Question\Component();
+
+    require_once( SABER_QUIZ_PATH . 'components/settings/src/SettingsComponent.php' );
+    new \SaberQuiz\Settings\SettingsComponent();
 
   }
 
@@ -72,7 +85,7 @@ class Plugin {
 
   }
 
-  public function Menu() {
+  public function menu() {
 
     \add_menu_page(
       'Saber Quiz',
@@ -106,6 +119,15 @@ class Plugin {
       'Questions',
       'edit_posts',
       'edit.php?post_type=question'
+    );
+
+    \add_submenu_page(
+      'saber-quiz',
+      'Reports',
+      'Reports',
+      'edit_posts',
+      'saber-reports',
+      ['\SaberQuiz\Reports\Component', 'pageCallback']
     );
 
     \add_submenu_page(
