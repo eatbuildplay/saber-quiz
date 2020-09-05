@@ -16,12 +16,12 @@ foreach( $posts as $post ) {
 
 
 
-var_dump($models[0]);
+// var_dump($models[0]);
 
 ?>
 
 <?php if( !empty( $models )) { ?>
-<table>
+<table id="quiz_score_report_table" class="display nowrap" >
   <thead>
     <tr>
       <th>Quiz</th>

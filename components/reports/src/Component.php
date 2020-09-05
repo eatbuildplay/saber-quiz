@@ -57,16 +57,31 @@ class Component {
   public function adminScripts() {
 
     wp_enqueue_style(
+      'saber-quiz-datatables',
+      SABER_QUIZ_URL . 'src/vendor/datatables/datatables.min.css',
+      [],
+      true
+    );
+
+    wp_enqueue_script(
+      'saber-quiz-datatables',
+      SABER_QUIZ_URL . 'src/vendor/datatables/datatables.min.js',
+      array('jquery'),
+      SABER_VERSION,
+      true
+    );
+
+    wp_enqueue_style(
       'saber-reports',
       SABER_QUIZ_URL . 'components/reports/assets/reports.css',
-      array(),
+      array('saber-quiz-datatables'),
       true
     );
 
     wp_enqueue_script(
       'saber-reports',
       SABER_QUIZ_URL . 'components/reports/assets/reports.js',
-      array('jquery', 'chartjs'),
+      array('jquery', 'saber-quiz-datatables'),
       SABER_VERSION,
       true
     );
