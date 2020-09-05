@@ -49,8 +49,6 @@ var Quiz = {
 
     Quiz.hideControls();
 
-    console.log( Quiz.score );
-
     // quiz single end template
     var $template = jQuery('#quiz-single-end').html();
     Quiz.canvas.body.html( $template );
@@ -155,6 +153,8 @@ var Quiz = {
 
     jQuery(document).on('click', '.quiz-next.enabled', function() {
 
+      jQuery(this).removeClass('enabled').addClass('disabled');
+
       var $nextQuestionIndex = Quiz.state.currentQuestion.index +1;
       var $question = Quiz.quiz.timeline.items[ $nextQuestionIndex ];
 
@@ -201,7 +201,6 @@ var Quiz = {
   questionShow: function( $question, $questionNumber ) {
 
     var nextButton = jQuery('.quiz-controls .quiz-next');
-    console.log( nextButton )
     jQuery('.quiz-controls .quiz-next').addClass('disabled');
 
     // populate templates
@@ -279,7 +278,6 @@ var Quiz = {
     jQuery.post( saberQuiz.ajaxurl, data, function( response ) {
 
       var nextButton = jQuery('.quiz-controls .quiz-next');
-      console.log( nextButton )
       nextButton.removeClass('disabled');
       nextButton.addClass('enabled');
 
@@ -287,9 +285,6 @@ var Quiz = {
 
        // update quiz score
        Quiz.score = response.quizScore;
-
-       console.log('answer arrived!')
-       console.log( Quiz.score )
 
        // add focus on answered question
        var $questionEl = jQuery('.question-' + response.question.id);
