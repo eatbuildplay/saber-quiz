@@ -2,7 +2,7 @@
 
 namespace SaberQuiz\Settings;
 
-class SettingsComponent {
+class Component {
 
   public function __construct() {
 
@@ -15,6 +15,10 @@ class SettingsComponent {
     $template = new \SaberQuiz\Template;
     $template->path = 'components/settings/templates/';
     $content = '';
+
+    $template->name = 'header';
+    $template->data = [];
+    $content .= $template->get();
 
     $template->name = 'main';
     $template->data = [];
@@ -44,7 +48,7 @@ class SettingsComponent {
     wp_enqueue_script(
       'saber-settings',
       SABER_QUIZ_URL . 'components/settings/assets/settings.js',
-      array('jquery', 'chartjs', 'jquery-ui-tabs'),
+      array('jquery', 'jquery-ui-tabs'),
       SABER_QUIZ_VERSION,
       true
     );

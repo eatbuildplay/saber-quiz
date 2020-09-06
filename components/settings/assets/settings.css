@@ -1,3 +1,20 @@
+/* Dashboard Header */
+.sq-dashboard-header {
+  background: #444;
+  color: #FFF;
+  margin-left: -20px;
+  padding: 8px 20px;
+  font-size: 1.2em;
+  font-weight: 600;
+  display: flex;
+}
+.sq-header-logo {
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: solid 1px #777;
+}
+
+
 #saber-settings-tabs {
   display: grid;
   grid-template-columns: 200px 1fr;

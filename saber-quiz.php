@@ -57,8 +57,8 @@ class Plugin {
     require_once( SABER_QUIZ_PATH . 'components/question/src/Component.php' );
     new \SaberQuiz\Question\Component();
 
-    require_once( SABER_QUIZ_PATH . 'components/settings/src/SettingsComponent.php' );
-    new \SaberQuiz\Settings\SettingsComponent();
+    require_once( SABER_QUIZ_PATH . 'components/settings/src/Component.php' );
+    new \SaberQuiz\Settings\Component();
 
   }
 
@@ -136,7 +136,7 @@ class Plugin {
       'Settings',
       'edit_posts',
       'saber-settings',
-      ['\SaberQuiz\Settings\SettingsComponent', 'pageCallback']
+      ['\SaberQuiz\Settings\Component', 'pageCallback']
     );
 
   }
