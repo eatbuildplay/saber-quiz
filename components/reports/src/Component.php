@@ -7,6 +7,7 @@ class Component {
   public function __construct() {
 
     require_once(SABER_QUIZ_PATH . 'components/reports/src/reports/ReportModel.php');
+    require_once(SABER_QUIZ_PATH . 'components/reports/src/reports/QuizScoreReport.php');
 
     add_action('admin_print_scripts-saber-quiz_page_saber-reports', [$this, 'adminScripts']);
 
@@ -27,12 +28,17 @@ class Component {
     $template->data = [];
     $content .= $template->get();
 
+    // old saber lms report section with stats
     $template->name = 'chart';
     $template->data = [
       'userCount' => $userCount,
       'cts'       => $cts
     ];
     $content .= $template->get();
+
+    // quiz score report
+    $report = new QuizScoreReport();
+    $content .= $report->run();
 
     $template->name = 'footer';
     $template->data = [];
