@@ -8,6 +8,14 @@ class Component {
 
     add_action('admin_enqueue_scripts', [$this, 'adminScripts']);
 
+    add_action('wp_ajax_saber_quiz_settings_save', [$this, 'jxSaveSettings']);
+
+  }
+
+  protected function jxSaveSettings() {
+
+    
+
   }
 
   public function pageCallback() {
