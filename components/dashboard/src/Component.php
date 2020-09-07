@@ -2,24 +2,15 @@
 
 namespace SaberQuiz\Dashboard;
 
-class DashboardComponent {
+class Component {
 
   public function __construct() {
-
-    require_once(SABER_QUIZ_PATH.'components/dashboard/src/DashboardShortcode.php');
-    new DashboardShortcode();
 
     add_action('admin_print_scripts-toplevel_page_saber-dashboard', array( $this, 'adminScripts' ));
 
   }
 
   public function pageCallback() {
-
-    /* Report setup */
-    $report = new \SaberQuiz\Reports\TotalStudentsReport();
-    $report->localizeReportData( 'saber-dashboard' );
-
-    /* Template loading */
 
     $template = new \SaberQuiz\Template;
     $template->path = 'components/dashboard/templates/';

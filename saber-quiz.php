@@ -45,8 +45,8 @@ class Plugin {
    */
   protected function loadComponents() {
 
-    require_once( SABER_QUIZ_PATH . 'components/dashboard/src/DashboardComponent.php' );
-    new \SaberQuiz\Dashboard\DashboardComponent();
+    require_once( SABER_QUIZ_PATH . 'components/dashboard/src/Component.php' );
+    new \SaberQuiz\Dashboard\Component();
 
     require_once( SABER_QUIZ_PATH . 'components/reports/src/Component.php' );
     new \SaberQuiz\Reports\Component();
@@ -92,7 +92,7 @@ class Plugin {
       'Saber Quiz',
       'edit_posts',
       'saber-quiz',
-      ['\SaberQuiz\Plugin', 'DashboardPage'],
+      ['\SaberQuiz\Dashboard\Component', 'pageCallback'],
       'dashicons-welcome-learn-more',
       2
     );
@@ -149,12 +149,6 @@ class Plugin {
       array(),
       true
     );
-
-  }
-
-  public function dashboardPage() {
-
-    print "dashboard";
 
   }
 
